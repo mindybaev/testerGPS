@@ -8,7 +8,9 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import javax.swing.JOptionPane;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -21,7 +23,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import kz.dev04.MessageGPSLock;
-import kz.dev04.util.HexHelper;
 
 public class MainShell extends Shell {
 	private Text idField;
@@ -343,18 +344,35 @@ public class MainShell extends Shell {
 	        		 butField.getText(),
 	        		 strTear,
 	        		 repField.getText());
-	         	 System.out.println(HexHelper.Byte2HexStr(msgByte));
-	         	try {       		
+	         //	 System.out.println(HexHelper.Byte2HexStr(msgByte));
+	         	try {   
+	         	 log("Connect");	
 	         	 Socket socket = new Socket(ipField.getText(), Integer.valueOf(portField.getText()));
+	         	 socket.getSoTimeout();
 	      		 OutputStream outputStream = socket.getOutputStream();     		
 	      		 outputStream.write(msgByte);
+	      	     log("Data sended");
+	      	     //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+       //	     String fromServer = in.readLine();
+	      		 Thread.sleep(3000);
 	      		 socket.close();
+	      		 log("Disconnect");
 	                 }catch (IOException e1) {
 	             	 warningMsg(e1.getMessage());
-	 		         }
+	 		         } catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}     
 		});
 		
+	}
+	
+	void log(String log){
+  		LocalDateTime date = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss - ");
+		String text = date.format(formatter);
+  		System.out.println(text+log);		
 	}
 
 

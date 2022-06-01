@@ -6,8 +6,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry excluding="src/|lib/" kind="src" path=""/>
+	<classpathentry excluding="lib/|src/" kind="src" path="">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="testerGPS"/>
+			<attribute name="annotationpath" value="/testerGPS"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="lib"/>
-	<classpathentry kind="lib" path="D:/Work/git/testerGPS/lib/swt.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Work/Git_Repo/testerGPSLock/testerGPS/lib/swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
