@@ -231,7 +231,7 @@ public class MainShell extends Shell {
 		
 		Label lblIpAdress = new Label(this, SWT.NONE);
 		lblIpAdress.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		lblIpAdress.setBounds(10, 387, 75, 19);
+		lblIpAdress.setBounds(10, 387, 66, 19);
 		lblIpAdress.setText("IP adress:");
 		
 		Label lblNewLabel = new Label(this, SWT.NONE);
@@ -329,12 +329,13 @@ public class MainShell extends Shell {
 	         		warningMsg("Некорректный порт");
 	         		return;
 	         	}
+
 	         	 byte[] msgByte = generationMsg(
 	         		 idField.getText(),
 	         	     cbMove.getSelection(),
 	         	     cbGPS.getSelection(),
-	         	     latField.getText(),
-	         	     longField.getText(),
+	         	     latField.getText().substring(0,8),
+	         	     longField.getText().substring(0,8),
 	        		 altField.getText(),
 	        		 spdField.getText(),
 	        		 dirField.getText(),
@@ -349,11 +350,9 @@ public class MainShell extends Shell {
 	         	 log("Connect");	
 	         	 Socket socket = new Socket(ipField.getText(), Integer.valueOf(portField.getText()));
 	         	 socket.getSoTimeout();
-	      		 OutputStream outputStream = socket.getOutputStream();     		
+	      		 OutputStream outputStream = socket.getOutputStream();   
 	      		 outputStream.write(msgByte);
 	      	     log("Data sended");
-	      	     //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-       //	     String fromServer = in.readLine();
 	      		 Thread.sleep(3000);
 	      		 socket.close();
 	      		 log("Disconnect");
@@ -403,7 +402,6 @@ public class MainShell extends Shell {
 		int gps = _gps?1:0;
 				
 		bbBody.putInt(vibr | (gps << 1)); //
-		
 		bbBody.putInt(Integer.parseInt(lat)); // lat  42884092
 		bbBody.putInt(Integer.parseInt(lon)); // lon  73159040
 		
