@@ -1,4 +1,4 @@
-package tester_G320;
+package testerGPS;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
