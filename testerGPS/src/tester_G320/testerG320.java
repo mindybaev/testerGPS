@@ -1,4 +1,4 @@
-package testerGPS;
+package tester_G320;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -24,7 +24,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import kz.dev04.MessageGPSLock;
 
-public class MainShell extends Shell {
+public class testerG320 extends Shell {
 	private Text idField;
 	private Text latField;
 	private Text longField;
@@ -48,7 +48,7 @@ public class MainShell extends Shell {
 	public static void main(String args[]) {
 		try {
 			Display display = Display.getDefault();
-			MainShell shell = new MainShell(display);
+			testerG320 shell = new testerG320(display);
 			shell.setLocation(700, 200);
 			shell.open();
 			shell.layout();
@@ -67,7 +67,7 @@ public class MainShell extends Shell {
 	 * Create the shell.
 	 * @param display
 	 */
-	public MainShell(Display display) {
+	public testerG320(Display display) {
 		super(display, SWT.DIALOG_TRIM);
 		
 		Label idLabel = new Label(this, SWT.NONE);
@@ -248,6 +248,19 @@ public class MainShell extends Shell {
 		portField.setText("10004");
 		portField.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		portField.setBounds(226, 384, 55, 21);
+		
+		Button btnNow = new Button(this, SWT.NONE);
+		btnNow.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				LocalDateTime date = LocalDateTime.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+				String text = date.format(formatter);
+				timeField.setText(text);
+			}
+		});
+		btnNow.setBounds(273, 253, 21, 25);
+		btnNow.setText("N");
 
 		createContents();
 		

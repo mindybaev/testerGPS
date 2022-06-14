@@ -1,4 +1,4 @@
-package testerGPS;
+package tester_G320;
 
 import javax.swing.*;
 import java.awt.*;
