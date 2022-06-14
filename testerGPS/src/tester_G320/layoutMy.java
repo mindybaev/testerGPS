@@ -1,4 +1,4 @@
-package testerGPS;
+package tester_G320;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,8 +22,8 @@ public class layoutMy extends JFrame {
 		this.setLocation(100, 100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton button1 = new JButton("Закрыть");
-		JButton button2 = new JButton("Отправить");
+		JButton button1 = new JButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		JButton button2 = new JButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		JButton button3 = new JButton("Button3");
 		JButton button4 = new JButton("Button4");
 		JButton button5 = new JButton("Button5");

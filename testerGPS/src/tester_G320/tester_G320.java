@@ -1,4 +1,4 @@
-package testerGPS;
+package tester_G320;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -24,7 +24,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import kz.dev04.MessageGPSLock;
 
-public class MainShell extends Shell {
+public class tester_G320 extends Shell {
 	private Text idField;
 	private Text latField;
 	private Text longField;
@@ -48,7 +48,7 @@ public class MainShell extends Shell {
 	public static void main(String args[]) {
 		try {
 			Display display = Display.getDefault();
-			MainShell shell = new MainShell(display);
+			tester_G320 shell = new tester_G320(display);
 			shell.setLocation(700, 200);
 			shell.open();
 			shell.layout();
@@ -67,7 +67,7 @@ public class MainShell extends Shell {
 	 * Create the shell.
 	 * @param display
 	 */
-	public MainShell(Display display) {
+	public tester_G320(Display display) {
 		super(display, SWT.DIALOG_TRIM);
 		
 		Label idLabel = new Label(this, SWT.NONE);
@@ -218,7 +218,7 @@ public class MainShell extends Shell {
 		rbUnseal.setText("Unseal");		
 		
 		Group group = new Group(this, SWT.NONE);
-		group.setBounds(295, 255, 133, 62);
+		group.setBounds(293, 244, 133, 62);
 		
 		Button rbTearN = new Button(group, SWT.RADIO);
 		rbTearN.setSelection(true);
@@ -248,6 +248,19 @@ public class MainShell extends Shell {
 		portField.setText("10004");
 		portField.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		portField.setBounds(226, 384, 55, 21);
+		
+		Button btnNow = new Button(this, SWT.NONE);
+		btnNow.setText("N");
+		btnNow.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				LocalDateTime date = LocalDateTime.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+				String text = date.format(formatter);
+				timeField.setText(text);
+			}
+		});
+		btnNow.setBounds(275, 253, 17, 25);
 
 		createContents();
 		
